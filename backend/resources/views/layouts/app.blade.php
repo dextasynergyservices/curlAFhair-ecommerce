@@ -1,23 +1,48 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ $title ?? 'curlAFhair' }}</title>
-    @vite('resources/css/app.css', 'resources/js/app.js')
-    <!-- FontAwesome CDN -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  </head>
-  <body class="font-sans antialiased bg-gray-50 text-gray-900">
+        <title>{{ config('app.name', 'CurlAFhair') }}</title>
 
-    @include('partials.nav') <!-- We'll create this -->
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <main class="min-h-screen">
-        @yield('content')
-    </main>
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    @include('partials.footer')
+        <!-- Styles -->
+        @livewireStyles
+    </head>
+    <body class="font-sans antialiased">
+        <x-banner />
 
-  </body>
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            {{-- @livewire('navigation-menu') --}}
+
+            <!-- Page Heading -->
+            {{-- @if (isset($header))
+                <header class="bg-white dark:bg-gray-800 shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif --}}
+
+            @include('partials.nav')
+
+            <!-- Page Content -->
+            <main>
+                @yield('content')
+            </main>
+        </div>
+
+        @include('partials.footer')
+
+        @livewireScripts
+
+    </body>
 </html>
