@@ -16,11 +16,24 @@
             <li><a href="{{ url('/services') }}" class="hover:text-pink-400">Services</a></li>
             <li><a href="{{ url('/contact') }}" class="hover:text-pink-400">Contact</a></li>
             <li><a href="{{ url('/cart') }}" class="hover:text-pink-400">Cart</a></li>
+
+            @guest
+                <li class="ml-auto"><a href="{{ route('login') }}" class="hover:text-pink-400">Login</a></li>
+                <li><a href="{{ route('register') }}" class="hover:text-pink-400">Sign Up</a></li>
+            @endguest
+
+            @auth
+                <li class="ml-auto">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-red-500 hover:underline">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
+                </li>
+            @endauth
         </ul>
+
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden px-4 pb-4 bg-black text-white">
+    <div id="mobile-menu" class="md:hidden px-4 pb-4 bg-black text-white hidden">
         <ul class="space-y-3 font-medium">
             <li><a href="{{ url('/') }}">Home</a></li>
             <li><a href="{{ url('/shop') }}">Shop</a></li>
@@ -28,8 +41,21 @@
             <li><a href="{{ url('/services') }}">Services</a></li>
             <li><a href="{{ url('/contact') }}">Contact</a></li>
             <li><a href="{{ url('/cart') }}">Cart</a></li>
+
+            @guest
+                <li><a href="{{ route('login') }}" class="hover:text-pink-400">Login</a></li>
+                <li><a href="{{ route('register') }}" class="hover:text-pink-400">Sign Up</a></li>
+            @endguest
+
+            @auth
+                <li>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('mobile-logout-form').submit();" class="text-red-500 hover:underline">Logout</a>
+                    <form id="mobile-logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
+                </li>
+            @endauth
         </ul>
     </div>
+
 </nav>
 
 <script>
@@ -44,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('bg-white', 'shadow-md');
             logo.classList.remove('text-white');
-            logo.classList.add('text-white');
+            logo.classList.add('text-black');
             navLinks.classList.remove('text-white');
             navLinks.classList.add('text-black');
         } else {
