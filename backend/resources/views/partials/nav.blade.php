@@ -4,9 +4,15 @@
 
         <!-- Hamburger -->
         <button id="nav-toggle" class="md:hidden text-white text-2xl focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <!-- <button id="nav-toggle" class="md:hidden text-white text-2xl focus:outline-none">
             <i class="fas fa-bars"></i>
             <i class="fas fa-bars"></i>
-        </button> 
+        </button> -->
 
         <!-- Desktop Menu -->
         <ul id="nav-links" class="hidden md:flex space-x-6 font-medium text-white transition-colors mx-auto">
@@ -20,18 +26,19 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden px-4 pb-4 bg-black text-white">
-        <ul class="space-y-3 font-medium">
-            <li><a href="{{ url('/') }}">Home</a></li>
-            <li><a href="{{ url('/shop') }}">Shop</a></li>
-            <li><a href="{{ url('/about') }}">About</a></li>
-            <li><a href="{{ url('/services') }}">Services</a></li>
-            <li><a href="{{ url('/contact') }}">Contact</a></li>
-            <li><a href="{{ url('/cart') }}">Cart</a></li>
-        </ul>
-    </div>
-</nav>
+    <div id="mobile-menu" class="md:hidden hidden h-screen pointer-events-none transition-all duration-500 ease-in-out bg-black/50 text-white p-4 backdrop-blur">
+    <ul class="space-y-3 font-medium">
+        <li><a href="{{ url('/') }}">Home</a></li>
+        <li><a href="{{ url('/shop') }}">Shop</a></li>
+        <li><a href="{{ url('/about') }}">About</a></li>
+        <li><a href="{{ url('/services') }}">Services</a></li>
+        <li><a href="{{ url('/contact') }}">Contact</a></li>
+        <li><a href="{{ url('/cart') }}">Cart</a></li>
+    </ul>
+</div>
 
+
+</nav>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
@@ -44,15 +51,19 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('bg-white', 'shadow-md');
             logo.classList.remove('text-white');
-            logo.classList.add('text-white');
+            logo.classList.add('text-black');
             navLinks.classList.remove('text-white');
             navLinks.classList.add('text-black');
+            navToggle.classList.remove('text-white');
+            navToggle.classList.add('text-black');
         } else {
             navbar.classList.remove('bg-white', 'shadow-md');
-            logo.classList.remove('text-white');
+            logo.classList.remove('text-black');
             logo.classList.add('text-white');
             navLinks.classList.remove('text-black');
             navLinks.classList.add('text-white');
+            navToggle.classList.remove('text-black');
+            navToggle.classList.add('text-white');
         }
     });
 
@@ -61,3 +72,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+
