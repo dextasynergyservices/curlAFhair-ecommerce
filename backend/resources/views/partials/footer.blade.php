@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 text-white py-10">
+<footer class="bg-white text-gray-100 py-10">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
         <!-- Column 1: Logo + Socials -->
         <div>
@@ -13,7 +13,7 @@
 
         <!-- Column 2: Navigation -->
         <div>
-            <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+            <h3 class="text-xl font-semibold mb-4 text-black">Quick Links</h3>
             <ul class="space-y-2 text-gray-400">
                 <li><a href="{{ url('/') }}" class="hover:text-white">Home</a></li>
                 <li><a href="{{ url('/shop') }}" class="hover:text-white">Shop</a></li>
@@ -25,7 +25,7 @@
 
         <!-- Column 3: Media -->
         <div>
-            <h3 class="text-xl font-semibold mb-4">Media</h3>
+            <h3 class="text-xl font-semibold mb-4 text-black">Media</h3>
             <ul class="space-y-2 text-gray-400">
                 <li><a href="#" class="hover:text-white">Gallery</a></li>
                 <li><a href="#" class="hover:text-white">Blog</a></li>
@@ -36,7 +36,7 @@
 
         <!-- Column 4: Contact -->
         <div>
-            <h3 class="text-xl font-semibold mb-4">Contact</h3>
+            <h3 class="text-xl font-semibold mb-4 text-black">Contact</h3>
             <ul class="space-y-2 text-gray-400">
                 <li>Email: info@curlafhair.com</li>
                 <li>Phone: +234 800 123 4567</li>
@@ -45,7 +45,7 @@
             </ul>
         </div>
     </div>
-    <div class="text-center py-6 text-sm text-gray-500">
+    <div class="text-center pt-6 text-sm text-gray-500">
     &copy; {{ now()->year }} curlAFhair. All rights reserved.
 </div>
 </footer>

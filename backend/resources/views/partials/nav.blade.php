@@ -1,12 +1,12 @@
 <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <a id="logo" href="{{ url('/') }}" class="text-2xl font-bold text-white transition-colors">curlAFhair</a>
+        <a id="logo" href="{{ url('/') }}" class="text-2xl font-bold text-white transition-colors h-[80px]"><img src="/images/logo.png" alt="logo" class="w-[175] h-[80px]"></a>
 
         <!-- Hamburger -->
         <button id="nav-toggle" class="md:hidden text-white text-2xl focus:outline-none">
             <i class="fas fa-bars"></i>
             <i class="fas fa-bars"></i>
-        </button>
+        </button> 
 
         <!-- Desktop Menu -->
         <ul id="nav-links" class="hidden md:flex space-x-6 font-medium text-white transition-colors mx-auto">
