@@ -2,12 +2,17 @@
 
 @section('content')
 <div class="relative h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/hero.png') }}');">
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center px-4">
-        <h1 class="text-white text-5xl md:text-6xl font-bold mb-4 animate-slideInRight">Welcome to curlAFhair</h1>
-        <p class="text-gray-200 text-lg md:text-xl max-w-xl animate-slideInLeft ">Your go-to destination for premium hair & beauty products.</p>
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start text-left md:px-10 px-10">
+        <h1 class="text-white text-5xl md:text-6xl font-bold mb-4 animate-slideInRight">Dry curls?</h1>
+        <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft ">We say no to having hair that’s not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad Hair day:
+
+        Dry Hair - leads to breakage, split ends, unmanageable hair and rough hair
+        Frizz - leads to hair that can be out of control
+        Tangles - leads to fairy knots and breakage .</p>
         <a href="{{ url('/shop') }}" class="mt-6 inline-block bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700" id="shopButton">Shop Now</a>
     </div>
 </div>
+
 
 <!-- shop items section -->
 <section class="py-12 px-4 md:px-20 bg-white">
