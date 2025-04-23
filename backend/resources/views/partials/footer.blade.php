@@ -1,11 +1,11 @@
 <footer class="bg-white text-gray-100 py-10">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
         <!-- Column 1: Logo + Socials -->
-        <div>
+        <div class="px-10">
             <!-- <h2 class="text-2xl font-bold mb-4">curlAFhair</h2> -->
             <a id="logo" href="{{ url('/') }}" class="text-2xl font-bold text-white transition-colors h-[80px]"><img src="/images/logo.png" alt="logo" class="w-[175] h-[80px]"></a>
             <p class="text-gray-400 mb-4">Stay styled. Stay beautiful.</p>
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 text-gray-400">
                 <a href="#" class="hover:text-pink-400"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="hover:text-pink-400"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="hover:text-pink-400"><i class="fab fa-twitter"></i></a>

@@ -33,7 +33,7 @@ class MemberDashboardController extends Controller
         }
 
         elseif($user->membership_type === 'admin' && $user->role === 'admin'){
-            return view('admin.dashboard', compact('user'));
+            return redirect()->route('admin.dashboard');
         }
 
         return view('frontend.members.dashboard', [

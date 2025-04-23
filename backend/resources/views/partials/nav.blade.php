@@ -2,13 +2,6 @@
     <div class=" mx-auto px-10 md:px-10 py-4 flex justify-between items-center">
         <a id="logo" href="{{ url('/') }}" class="text-2xl font-bold text-white transition-colors h-[80px]"><img src="/images/logo.png" alt="logo" class="w-[175] h-[80px]"></a>
 
-        <!-- Hamburger -->
-        <!-- <button id="nav-toggle" class="md:hidden text-white text-2xl focus:outline-none">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button> -->
-
         <button id="nav-toggle" class="md:hidden text-white text-2xl focus:outline-none">
             <i class="fas fa-bars"></i>
         </button>
@@ -21,7 +14,7 @@
             <li><a href="{{ url('/services') }}" class="hover:text-pink-400">Services</a></li>
             <li><a href="{{ url('/contact') }}" class="hover:text-pink-400">Contact</a></li>
         </ul>
-        
+
         <ul id="nav-links-2" class="hidden md:flex justify-end space-x-6 text-lg text-white transition-colors">
             <li><a href="{{ url('/cart') }}" class="hover:text-pink-400"><i class="fas fa-shopping-cart"></i></a></li>
 
@@ -40,21 +33,7 @@
 
     </div>
 
-    <!-- Mobile Menu -->
-
-    <!-- <div id="mobile-menu" class="md:hidden hidden h-screen pointer-events-none transition-all duration-500 ease-in-out bg-black/50 text-white p-4 backdrop-blur">
-    <ul class="space-y-3 font-medium">
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li><a href="{{ url('/shop') }}">Shop</a></li>
-        <li><a href="{{ url('/about') }}">About</a></li>
-        <li><a href="{{ url('/services') }}">Services</a></li>
-        <li><a href="{{ url('/contact') }}">Contact</a></li>
-        <li><a href="{{ url('/cart') }}"><i class="fas fa-shopping-cart"></i></a></li>
-
-    </ul>
-</div> -->
-
-    <div id="mobile-menu" class="md:hidden hidden h-screen pointer-events-none px-4 py-4 bg-black text-white hidden bg-black/50 backdrop-blur">
+    <div id="mobile-menu" class="md:hidden hidden h-screen pointer-events-none px-4 py-4 bg-black text-white bg-black/50 backdrop-blur">
         <ul class="space-y-3 font-medium">
             <li><a href="{{ url('/') }}">Home</a></li>
             <li><a href="{{ url('/shop') }}">Shop</a></li>
