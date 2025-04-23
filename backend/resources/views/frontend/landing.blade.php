@@ -4,7 +4,7 @@
 <div class="relative h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/hero.png') }}');">
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start text-left md:px-10 px-10">
         <h1 class="text-white text-5xl md:text-6xl font-bold mb-4 animate-slideInRight">Dry curls?</h1>
-        <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft ">We say no to having hair that’s not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad hair day:
+        <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft ">We say no to having hair that’s not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad Hair day:
 
         Dry Hair - leads to breakage, split ends, unmanageable hair and rough hair
         Frizz - leads to hair that can be out of control
