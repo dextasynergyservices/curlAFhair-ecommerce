@@ -126,5 +126,5 @@
 </section>
 
 
-
+<hr>
 @endsection
