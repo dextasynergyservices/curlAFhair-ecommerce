@@ -1,5 +1,5 @@
 <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
-    <div class="max-w-7xl mx-auto px-2 py-4 flex justify-between items-center">
+    <div class=" mx-auto px-10 md:px-10 py-4 flex justify-between items-center">
         <a id="logo" href="{{ url('/') }}" class="text-2xl font-bold text-white transition-colors h-[80px]"><img src="/images/logo.png" alt="logo" class="w-[175] h-[80px]"></a>
 
         <!-- Hamburger -->
@@ -14,7 +14,7 @@
         </button>
 
         <!-- Desktop Menu -->
-        <ul id="nav-links" class="hidden md:flex space-x-6 text-xl text-white transition-colors mx-auto">
+        <ul id="nav-links" class="hidden md:flex space-x-6 text-lg text-white transition-colors mx-auto">
             <li><a href="{{ url('/') }}" class="hover:text-pink-400">Home</a></li>
             <li><a href="{{ url('/shop') }}" class="hover:text-pink-400">Shop</a></li>
             <li><a href="{{ url('/about') }}" class="hover:text-pink-400">About</a></li>
@@ -22,7 +22,7 @@
             <li><a href="{{ url('/contact') }}" class="hover:text-pink-400">Contact</a></li>
         </ul>
         
-        <ul id="nav-links" class="hidden md:flex justify-end space-x-6 text-xl text-white transition-colors">
+        <ul id="nav-links-2" class="hidden md:flex justify-end space-x-6 text-lg text-white transition-colors">
             <li><a href="{{ url('/cart') }}" class="hover:text-pink-400"><i class="fas fa-shopping-cart"></i></a></li>
 
             @guest
@@ -86,6 +86,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
     const navLinks = document.getElementById('nav-links');
+    const navLinks2 = document.getElementById('nav-links-2')
     const navToggle = document.getElementById('nav-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const logo = document.getElementById('logo');
@@ -99,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
             navLinks.classList.add('text-black');
             navToggle.classList.remove('text-white');
             navToggle.classList.add('text-black');
+            navLinks2.classList.remove('text-white');
+            navLinks2.classList.add('text-black');
         } else {
             navbar.classList.remove('bg-white', 'shadow-md');
             logo.classList.remove('text-black');
@@ -107,6 +110,8 @@ document.addEventListener('DOMContentLoaded', function () {
             navLinks.classList.add('text-white');
             navToggle.classList.remove('text-black');
             navToggle.classList.add('text-white');
+            navLinks2.classList.remove('text-black');
+            navLinks2.classList.add('text-white');
         }
     });
 
