@@ -174,7 +174,6 @@
 </section>
 
 
-
-
+<hr>
 
 @endsection
