@@ -24,11 +24,20 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call([
-            OrderSeeder::class,
-            SavedItemSeeder::class,
-            WishlistSeeder::class,
-            NotificationSeeder::class,
-        ]);
+        // $this->call([
+        //     OrderSeeder::class,
+        //     SavedItemSeeder::class,
+        //     WishlistSeeder::class,
+        //     NotificationSeeder::class,
+        // ]);
+
+    //     $this->call([
+    //     ProductSeeder::class,
+    // ]);
+
+      $this->call([
+        SiteSettingSeeder::class,
+      ]);
+
     }
 }
