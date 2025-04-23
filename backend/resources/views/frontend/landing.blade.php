@@ -6,7 +6,7 @@
         <h1 class="text-white text-5xl md:text-6xl font-bold mb-4 animate-slideInRight">Dry curls?</h1>
         <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft ">We say no to having hair that’s not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad hair day:
 
-        Dry Hair - leads to breakage, split ends, unmanageable Hair and rough hair
+        Dry Hair - leads to breakage, split ends, unmanageable hair and rough hair
         Frizz - leads to hair that can be out of control
         Tangles - leads to fairy knots and breakage .</p>
         <a href="{{ url('/shop') }}" class="mt-6 inline-block bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700" id="shopButton">Shop Now</a>

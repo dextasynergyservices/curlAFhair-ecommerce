@@ -54,7 +54,7 @@
     </ul>
 </div> -->
 
-    <div id="mobile-menu" class="md:hidden hidden h-screen pointer-events-none px-4 pb-4 bg-black text-white hidden bg-black/50 backdrop-blur">
+    <div id="mobile-menu" class="md:hidden hidden h-screen pointer-events-none px-4 py-4 bg-black text-white hidden bg-black/50 backdrop-blur">
         <ul class="space-y-3 font-medium">
             <li><a href="{{ url('/') }}">Home</a></li>
             <li><a href="{{ url('/shop') }}">Shop</a></li>
