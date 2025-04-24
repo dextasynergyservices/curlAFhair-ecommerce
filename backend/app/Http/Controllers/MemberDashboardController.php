@@ -29,11 +29,11 @@ class MemberDashboardController extends Controller
 
         // Check membership type and render the appropriate view
         if ($user->membership_type === 'premium' && $user->role === 'member') {
-            return view('frontend.members.premium-dashboard', compact('chart'));
+            return view('frontend.members.premium-dashboard', compact('chart', 'user'));
         }
 
-        elseif($user->membership_type === 'admin' && $user->role === 'admin'){
-            return view('admin.dashboard', compact('user'));
+        if($user->role === 'admin'){
+            return redirect()->route('admin.dashboard');
         }
 
         return view('frontend.members.dashboard', [

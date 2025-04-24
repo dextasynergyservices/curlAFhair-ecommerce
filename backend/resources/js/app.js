@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import './bootstrap';
-
-shopButton.addEventListener('mouseenter', () => {
-    shopButton.classList.add('animate-bounce');
-
-    setTimeout(() =>{
-        shopButton.classList.remove('animate-bounce');
-      }, 500)
-  });
-
-  
-=======
 import "./bootstrap";
 import Alpine from "alpinejs";
 
@@ -39,4 +26,3 @@ document.addEventListener("alpine:init", () => {
         },
     }));
 });
->>>>>>> develop
