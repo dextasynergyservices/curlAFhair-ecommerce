@@ -1,7 +1,7 @@
 @extends('layouts.members')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-16 pt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-16"> <br><br><br><br><br><br>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Chart Panel -->
             <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6">

@@ -4,7 +4,7 @@
 <div class="relative h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/hero.png') }}');">
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start text-left md:px-10 px-10">
         <h1 class="text-white text-5xl md:text-6xl font-bold mb-4 animate-slideInRight">Dry curls?</h1>
-        <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft ">We say no to having hair that’s not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad Hair day:
+        <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft">We say no to having hair that’s not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad Hair day:
 
         Dry Hair - leads to breakage, split ends, unmanageable hair and rough hair
         Frizz - leads to hair that can be out of control
@@ -84,7 +84,7 @@
         </div>
       </div>
 
-      
+
     </div>
   </div>
 </section> <!-- End Of Shop item section -->
@@ -94,15 +94,15 @@
   <div class=" max-w-none w-full mx-auto">
   <h1 class="text-2xl font-semibold mb-8 md:mt-12">
       <span class="font-bold text-black">Citizenship</span> <span class="text-gray-600">| join planet af solution</span>
-    </h1> 
+    </h1>
     <h2 class="text-center text-lg mb-8">First Things First, Who are We?</h2>
     <h2 class="text-xl font-semibold italic  mb-8">About Us</h2>
-    
+
     <div class="text-lg mx-auto">
       <p class="mb-6">A young woman decided to stop relaxing her hair. At the age of 17, she noticed her hair was browning and suffering from breakage. The last time she saw her natural hair was when she was only 5. She wanted to remember what her hair looked like.</p>
-      
+
       <p class="mb-6">This was 2010, when it seemed as if there was a movement against relaxers towards natural hair. Chris Rock had also recently come out with his "Good Hair" movie. The timing felt right.</p>
-      
+
       <p class="mb-6">This product is for the women who want curly and fabulous hair. Who want to enjoy their God-given hair without wondering if our hair is just "bad". No, your hair is not bad. You've just not found the right moisturiser yet!</p>
     </div>
     <p class="text-center font-bold text-lg">what’s PLANET AF?</p>
@@ -121,9 +121,9 @@
   <p class="italic text-xl md:text-lg mx-auto mb-8">In a galaxy where we are building a community of people who love their hair. This is a whole civilisation where we build a virtual planet just for us!</p>
   <button class="bg-[#FF7A76] text-white px-4 py-2 rounded-lg hover:bg-sky-700">join</button>
 
-  <img 
-    src="/images/space.png" 
-    alt="space man" 
+  <img
+    src="/images/space.png"
+    alt="space man"
     class="absolute w-[150px] w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1080px] "
     style="bottom: -10%; left: 30%;"
   >
@@ -173,7 +173,5 @@
 </div>
 </section>
 
-
 <hr>
-
 @endsection
