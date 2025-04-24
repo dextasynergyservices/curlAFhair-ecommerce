@@ -40,6 +40,7 @@ Route::prefix('admin/products')->name('admin.products.')->group(function () {
     Route::put('/{product}', [AdminProductController::class, 'update'])->name('update');
     Route::delete('/{product}', [AdminProductController::class, 'destroy'])->name('destroy');
     Route::post('/{product}/toggle', [AdminProductController::class, 'toggle'])->name('toggle');
+    Route::post('/{product}/check-discount', [AdminProductController::class, 'checkDiscount'])->name('check-discount');
 });
 
 Route::prefix('admin/setings')->name('admin.settings.')->group(function () {

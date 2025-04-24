@@ -15,6 +15,12 @@
         </div>
     @endif
 
+    @if(session('info'))
+        <div class="bg-blue-100 border border-blue-200 text-blue-800 px-4 py-2 rounded mb-4">
+            {{ session('info') }}
+        </div>
+    @endif
+
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white shadow rounded-lg overflow-hidden">
             <thead>
@@ -23,6 +29,7 @@
                     <th class="px-6 py-3">Image</th>
                     <th class="px-6 py-3">Name</th>
                     <th class="px-6 py-3">Price</th>
+                    <th class="px-6 py-3">Variants</th>
                     <th class="px-6 py-3">Stock</th>
                     <th class="px-6 py-3">Status</th>
                     <th class="px-6 py-3">Actions</th>
@@ -41,6 +48,13 @@
                     </td>
                     <td class="px-6 py-4">{{ $product->name }}</td>
                     <td class="px-6 py-4">₦{{ number_format($product->price, 2) }}</td>
+                    <td class="px-6 py-4">
+                        @foreach($product->variants as $variant)
+                            <div>
+                                ₦{{ number_format($variant->price, 2) }} - Qty: {{ $variant->quantity }}
+                            </div>
+                        @endforeach
+                    </td>
                     <td class="px-6 py-4">{{ $product->stock }}</td>
                     <td class="px-6 py-4">
                         <span class="px-2 py-1 text-xs font-medium rounded {{ $product->is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
@@ -50,17 +64,23 @@
                     <td class="px-6 py-4 space-x-2">
                         <a href="{{ route('admin.products.edit', $product) }}" class="text-blue-600 hover:underline">Edit</a>
                         <form action="{{ route('admin.products.destroy', $product) }}" method="POST" class="delete-form inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="text-red-600 hover:underline delete-btn">Delete</button>
-                    </form>
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="text-red-600 hover:underline delete-btn">Delete</button>
+                        </form>
 
                         <form action="{{ route('admin.products.toggle', $product) }}" method="POST" class="inline">
-                        @csrf
-                        <button class="text-sm {{ $product->is_active ? 'text-yellow-600' : 'text-green-600' }} hover:underline">
-                            {{ $product->is_active ? 'Deactivate' : 'Activate' }}
-                        </button>
-                    </form>
+                            @csrf
+                            <button class="text-sm {{ $product->is_active ? 'text-yellow-600' : 'text-green-600' }} hover:underline">
+                                {{ $product->is_active ? 'Deactivate' : 'Activate' }}
+                            </button>
+                        </form>
+
+                        <form action="{{ route('admin.products.check-discount', $product) }}"      method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="text-indigo-600 hover:underline">Check Discount</button>
+                        </form>
+
                     </td>
                 </tr>
                 @endforeach

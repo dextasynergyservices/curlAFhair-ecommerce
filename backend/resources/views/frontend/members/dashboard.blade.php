@@ -19,7 +19,7 @@
 @extends('layouts.members')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16"> <br><br><br>
         <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-8 text-center">Welcome, {{ $user->name }}</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
