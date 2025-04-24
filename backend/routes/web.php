@@ -13,6 +13,10 @@ Route::get('/', function () {
     return view('frontend.landing', ['title' => 'Welcome']);
 });
 
+Route::get('/shop', function () {
+    return view('frontend.shop', ['title' => 'Shop']);
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

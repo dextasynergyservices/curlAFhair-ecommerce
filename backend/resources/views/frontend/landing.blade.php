@@ -173,4 +173,5 @@
 </div>
 </section>
 
+<hr>
 @endsection
