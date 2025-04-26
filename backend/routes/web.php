@@ -17,6 +17,10 @@ Route::get('/shop', function () {
     return view('frontend.shop', ['title' => 'Shop']);
 });
 
+Route::get('/cart', function () {
+    return view('frontend.cart', ['title' => 'Cart']);
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
