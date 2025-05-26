@@ -35,7 +35,7 @@
       </div>
 
       <!-- Product Card 2-->
-      <div class="bg-white rounded-lg overflow-hidden md:w-[400px">
+      <div class="bg-white rounded-lg overflow-hidden md:w-[400px]">
         <img src="/images/card2.png" alt="Curl Definer" class="w-full h-[400px] object-cover rounded-lg ">
         <div class="p-4">
           <h3 class="text-lg font-semibold">Curl Definer</h3>
@@ -65,7 +65,7 @@
       </div>
 
       <!-- Product Card 5-->
-      <div class="bg-white rounded-lg overflow-hidden md:w-[400px">
+      <div class="bg-white rounded-lg overflow-hidden md:w-[400px]">
         <img src="/images/card2.png" alt="Curl Definer" class="w-full h-[400px] object-cover rounded-lg ">
         <div class="p-4">
           <h3 class="text-lg font-semibold">Curl Definer</h3>
@@ -90,24 +90,26 @@
 </section> <!-- End Of Shop item section -->
 
 <!-- About Section -->
-<section class="w-full min-h-screen bg-[#FFEBEA] py-12 px-4 md:px-20 ">
-  <div class=" max-w-none w-full mx-auto">
-  <h1 class="text-2xl font-semibold mb-8 md:mt-12">
-      <span class="font-bold text-black">Citizenship</span> <span class="text-gray-600">| join planet af solution</span>
-    </h1>
-    <h2 class="text-center text-lg mb-8">First Things First, Who are We?</h2>
-    <h2 class="text-xl font-semibold italic  mb-8">About Us</h2>
+<section id="about" class="pt-20">
+  <div class="w-full min-h-screen bg-[#FFEBEA] py-12 px-4 md:px-20 " >
+    <div class=" max-w-none w-full mx-auto">
+    <h1 class="text-2xl font-semibold mb-8 md:mt-12">
+        <span class="font-bold text-black">Citizenship</span> <span class="text-gray-600">| join planet af solution</span>
+      </h1>
+      <h2 class="text-center text-lg mb-8">First Things First, Who are We?</h2>
+      <h2 class="text-xl font-semibold italic  mb-8">About Us</h2>
 
-    <div class="text-lg mx-auto">
-      <p class="mb-6">A young woman decided to stop relaxing her hair. At the age of 17, she noticed her hair was browning and suffering from breakage. The last time she saw her natural hair was when she was only 5. She wanted to remember what her hair looked like.</p>
+      <div class="text-lg mx-auto">
+        <p class="mb-6">A young woman decided to stop relaxing her hair. At the age of 17, she noticed her hair was browning and suffering from breakage. The last time she saw her natural hair was when she was only 5. She wanted to remember what her hair looked like.</p>
 
-      <p class="mb-6">This was 2010, when it seemed as if there was a movement against relaxers towards natural hair. Chris Rock had also recently come out with his "Good Hair" movie. The timing felt right.</p>
+        <p class="mb-6">This was 2010, when it seemed as if there was a movement against relaxers towards natural hair. Chris Rock had also recently come out with his "Good Hair" movie. The timing felt right.</p>
 
-      <p class="mb-6">This product is for the women who want curly and fabulous hair. Who want to enjoy their God-given hair without wondering if our hair is just "bad". No, your hair is not bad. You've just not found the right moisturiser yet!</p>
+        <p class="mb-6">This product is for the women who want curly and fabulous hair. Who want to enjoy their God-given hair without wondering if our hair is just "bad". No, your hair is not bad. You've just not found the right moisturiser yet!</p>
+      </div>
+      <p class="text-center font-bold text-lg">what’s PLANET AF?</p>
     </div>
-    <p class="text-center font-bold text-lg">what’s PLANET AF?</p>
-  </div>
-</section> <!-- End of About Section -->
+        </div> 
+</section><!-- End of About Section -->
 
 <section
   class="w-full min-h-screen h-screen py-12 px-4 md:px-20"
@@ -129,8 +131,46 @@
   >
 </section> <!--End of Planet Section -->
 
+<!-- Services Section -->
+<section e id="services" class="pt-20">
+<div class="bg-white py-16 px-10">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Sevice</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      
+      <!-- Service 1 -->
+      <div class="text-center p-6 border rounded-lg shadow hover:shadow-md transition">
+        <div class="text-pink-500 text-5xl mb-4">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Natural Hair Products</h3>
+        <p class="text-gray-600">Say goodbye to harsh relaxers. Our products are crafted to nourish and celebrate your natural curls, kinks, and coils.</p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="text-center p-6 border rounded-lg shadow hover:shadow-md transition">
+        <div class="text-yellow-500 text-5xl mb-4">
+          <i class="fas fa-spa"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Moisture & Repair</h3>
+        <p class="text-gray-600">Restore your hair's strength and softness. Our deep moisturizers combat dryness and breakage, revealing your hair's full potential.</p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="text-center p-6 border rounded-lg shadow hover:shadow-md transition">
+        <div class="text-purple-500 text-5xl mb-4">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Confidence & Community</h3>
+        <p class="text-gray-600">We’re more than a product — we’re a movement. Join a growing tribe of women who wear their natural hair with pride and power.</p>
+      </div>
+
+    </div>
+  </div>
+  </div > 
+</section><!-- End of  Service Section -->
 <!-- Review section -->
-<section class="w-full min-h-screen bg-white py-12 px-4 md:px-20 relative overflow-hidden">
+<section class="w-full min-h-[50vh] bg-white py-12 px-4 md:px-20 relative overflow-hidden">
 <h2 class=" text-2xl font-semibold mb-8 md:mt-12">Review</h2>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -172,6 +212,65 @@
 
 </div>
 </section>
+
+<!-- Contact Section -->
+<section id="contact" class="p-20">
+<div class="bg-gray-100 py-16 px-10">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Get In Touch</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      
+      <!-- Contact Form -->
+      <form class="space-y-6 bg-white p-6 rounded-lg shadow">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-pink-500">
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-pink-500">
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-pink-500">
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+          <textarea id="message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+        </div>
+
+        <div>
+          <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-md transition">Send Message</button>
+        </div>
+      </form>
+
+      <!-- Contact Info -->
+      <div class="bg-white p-6 rounded-lg shadow space-y-6 text-gray-700">
+        <div>
+          <h3 class="text-xl font-semibold mb-2"><i class="fas fa-map-marker-alt mr-2 text-pink-600"></i> Address</h3>
+          <p>123 Natural Hair Lane,<br> Lagos, Nigeria</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2"><i class="fas fa-phone-alt mr-2 text-pink-600"></i> Phone</h3>
+          <p>+234 812 345 6789</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2"><i class="fas fa-envelope mr-2 text-pink-600"></i> Email</h3>
+          <p>support@naturalhaircare.ng</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+
 
 <hr>
 @endsection
