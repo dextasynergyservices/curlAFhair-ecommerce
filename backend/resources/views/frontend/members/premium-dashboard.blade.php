@@ -1,65 +1,61 @@
 @extends('layouts.members')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-16"> <br><br><br><br><br><br>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Chart Panel -->
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6">
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-4">Order Statistics</h3>
-                <div>
-                    @if (@isset($hasChartData) && $hasChartData) <!-- Check if there are labels (data) to display -->
-                        {!! $chart->container() !!}
-                    @else
-                        <p class="text-gray-600 dark:text-gray-300">No data available for the chart.</p>
-                    @endif
-                </div>
-            </div>
-
-            <!-- Activity Feed Panel -->
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6">
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-4">Recent Activity</h3>
-                <ul>
-                    @if (@isset($hasOrders) && $hasOrders)
-                        @foreach ($recentActivities as $activity)
-                            <li class="text-gray-600 dark:text-gray-300">
-                                Order #{{ $activity->id }} placed on {{ $activity->created_at->format('M d, Y') }}
-                            </li>
-                        @endforeach
-                    @else
-                        <li class="text-gray-600 dark:text-gray-300">No orders made yet.</li>
-                    @endif
-                </ul>
-            </div>
+<div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h1 class="text-2xl font-semibold text-gray-800">
+                Hello, {{ $user->name }} <span class="ml-2 text-sm bg-green-100 text-green-700 px-2 py-1 rounded-full">Premium</span>
+            </h1>
+            <p class="text-gray-600 text-sm">Access your premium dashboard features below.</p>
         </div>
 
-        <!-- Shortcuts Panel -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <a href="{{ url('/order-tracking') }}" class="text-blue-500 hover:underline">Track Order</a>
-            </div>
-            <div x-data="{ open: false }" class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <button @click="open = true" class="text-blue-500 hover:underline">Update Profile</button>
+        <!-- Edit Profile Button -->
+        <button wire:click="$dispatch('open-edit-profile')"
+            class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg">
+            Edit Profile
+        </button>
+    </div>
 
-                <!-- Modal -->
-                <template x-if="open">
-                    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md relative shadow-xl">
-                            <button @click="open = false" class="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-red-600">&times;</button>
-                            <livewire:edit-profile />
-                        </div>
-                    </div>
-                </template>
-            </div>
+    <!-- Notification Bell Dropdown -->
+    @include('frontend.members.partials.notification-bell', ['user' => $user])
 
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <a href="{{ url('/wishlist') }}" class="text-blue-500 hover:underline">Add to Wishlist</a>
-            </div>
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <a href="{{ url('/cart') }}" class="text-blue-500 hover:underline">Go to Cart</a>
-            </div>
+    <!-- Premium Features -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div class="bg-white shadow rounded-lg p-4 self-start">
+            <h2 class="text-gray-700 text-lg font-semibold mb-2">Order Status</h2>
+            <ul class="text-sm text-gray-600 space-y-1">
+                @forelse($recentActivities as $order)
+                    <li>
+                        Order #{{ $order->id }} -
+                        <span class="font-semibold">{{ ucfirst($order->status) }}</span>
+                        <span class="text-xs text-gray-500">({{ $order->created_at->diffForHumans() }})</span>
+                    </li>
+                @empty
+                    <li>No recent orders.</li>
+                @endforelse
+            </ul>
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="text-gray-700 text-lg font-semibold mb-2">Orders Chart</h2>
+            @if ($hasChartData)
+                {!! $chart->container() !!}
+            @else
+                <p class="text-sm text-gray-500">Not enough data to generate chart.</p>
+            @endif
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    {!! $chart->script() !!}
+    <!-- Edit Profile Modal Component -->
+    @livewire('edit-profile', ['user' => $user])
+</div>
+@endsection
+
+@section('scripts')
+    @if ($hasChartData)
+        <script src="{{ $chart->cdn() }}"></script>
+        {{ $chart->script() }}
+    @endif
 @endsection

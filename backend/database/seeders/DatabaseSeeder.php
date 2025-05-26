@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Seeders\UsersTableSeeder as SeedersUsersTableSeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\AdminUserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,30 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed admin user
-        // $this->call(AdminUserSeeder::class);
 
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        // $this->call([
-        //     OrderSeeder::class,
-        //     SavedItemSeeder::class,
-        //     WishlistSeeder::class,
-        //     NotificationSeeder::class,
-        // ]);
-
-    //     $this->call([
-    //     ProductSeeder::class,
-    // ]);
-
-      $this->call([
-        SiteSettingSeeder::class,
-      ]);
+        $this->call([
+            // AdminUserSeeder::class,
+            // OrderSeeder::class,
+            // SavedItemSeeder::class,
+            // WishlistSeeder::class,
+            NotificationSeeder::class,
+            // UsersTableSeeder::class,
+        ]);
 
     }
 }
