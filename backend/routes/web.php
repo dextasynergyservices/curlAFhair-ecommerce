@@ -27,6 +27,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', [MemberDashboardController::class, 'index'])->name('dashboard');
+    Route::post('/notifications/mark-as-read', [MemberDashboardController::class, 'markNotificationsAsRead'])
+        ->name('notifications.markAsRead');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

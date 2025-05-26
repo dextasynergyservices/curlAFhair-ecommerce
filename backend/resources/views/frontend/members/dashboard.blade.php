@@ -1,59 +1,66 @@
-{{-- <x-app-layout> --}}
-    {{-- @extends('layouts.app')
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-                <p class="text-black">I am a Dashboard</p>
-            </div>
-        </div>
-    </div> --}}
-{{-- </x-app-layout> --}}
-
 @extends('layouts.members')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16"> <br><br><br>
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-8 text-center">Welcome, {{ $user->name }}</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Profile Info -->
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">👤 Profile Info</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">{{ $user->name }}</p>
-                <p class="text-sm text-gray-600 dark:text-gray-300">{{ $user->email }}</p>
-            </div>
-
-            <!-- Orders -->
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">📦 Order History</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">You have {{ $user->orders->count() }} orders</p>
-            </div>
-
-            <!-- Saved Items -->
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">💾 Saved Items</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">{{ $user->savedItems->count() }} saved items</p>
-            </div>
-
-            <!-- Wishlist -->
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center">
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">📝 Wishlist</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">{{ $user->wishlists->count() }} wishlisted items</p>
-            </div>
-
-            <!-- Notifications -->
-            <div class="bg-white dark:bg-gray-800 shadow rounded-2xl p-6 text-center md:col-span-3">
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">🔔 Notifications</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">{{ $user->notifications->count() }} notifications</p>
-            </div>
+<div class="container mx-auto px-4 py-8"> <br><br><br><br><br><br>
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h1 class="text-2xl font-semibold text-gray-800">
+                Welcome, {{ $user->name }}
+            </h1>
+            <p class="text-gray-600 text-sm">Your Member Dashboard</p>
         </div>
     </div>
-@endsection
 
+    <!-- Notification Bell Dropdown -->
+    @include('frontend.members.partials.notification-bell', ['user' => $user])
+
+    <!-- Dashboard Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div class="bg-white shadow rounded-lg p-4 self-start min-h-[120px]">
+            <h2 class="text-gray-700 text-lg font-semibold mb-2">Profile</h2>
+            <p class="text-sm text-gray-600">Email: {{ $user->email }}</p>
+            <p class="text-sm text-gray-600">Joined: {{ $user->created_at->format('M d, Y') }}</p>
+             <!-- Edit Profile Button -->
+            {{-- <button wire:click="$set('showEditModal', true)" class="btn btn-primary">Edit Profile</button> --}}
+
+            <!-- Modal -->
+            {{-- @if($showEditModal)
+                <div x-data x-show="$wire.showEditModal" x-cloak class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        @livewire('edit-profile', ['user' => auth()->user()])
+                    </div>
+                </div>
+            @endif --}}
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-4 min-h-[120px]">
+            <h2 class="text-gray-700 text-lg font-semibold mb-2">Order History</h2>
+            <ul class="text-sm text-gray-600 space-y-1">
+                @forelse($orders as $order)
+                    <li>
+                        Order #{{ $order->id }} -
+                        <span class="font-semibold">{{ ucfirst($order->status) }}</span>
+                        <span class="text-xs text-gray-500">({{ $order->created_at->diffForHumans() }})</span>
+                    </li>
+                @empty
+                    <li>No orders yet.</li>
+                @endforelse
+            </ul>
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-4 min-h-[120px]">
+            <h2 class="text-gray-700 text-lg font-semibold mb-2">Wishlist</h2>
+            <p class="text-sm text-gray-600">Items: {{ $wishlist->count() }}</p>
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-4 min-h-[120px]">
+            <h2 class="text-gray-700 text-lg font-semibold mb-2">Saved Items</h2>
+            <p class="text-sm text-gray-600">Items: {{ $savedItems->count() }}</p>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal Component -->
+    @livewire('edit-profile', ['user' => $user])
+</div>
+@endsection
