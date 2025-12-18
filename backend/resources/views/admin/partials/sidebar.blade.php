@@ -20,6 +20,12 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{ route('admin.promo.index') }}" class="block px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+                <i class="fas fa-tags mr-2"></i> Promo
+            </a>
+        </li>
+
         {{-- Manage Products Dropdown --}}
         <li>
             <button class="w-full flex items-center justify-between px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700" onclick="this.nextElementSibling.classList.toggle('hidden')">

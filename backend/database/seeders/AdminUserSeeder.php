@@ -14,14 +14,17 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Check if the admin user already exists
-        if (!User::where('email', 'admin@curlafhair.com')->exists()) {
-            User::create([
-                'name' => 'Super Admin',
-                'email' => 'admin@curlafhair.com',
-                'password' => Hash::make('password'),
+        $email = env('ADMIN_EMAIL', 'admin@curlafhair.com');
+        $password = env('ADMIN_PASSWORD', 'Admin@12345');
+
+        User::updateOrCreate(
+            ['email' => $email],
+            [
+                'name' => 'CurlAFHair Admin',
+                'password' => Hash::make($password),
                 'role' => 'admin',
-            ]);
-        }
+                'email_verified_at' => now(),
+            ]
+        );
     }
 }

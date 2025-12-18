@@ -21,6 +21,10 @@ Route::get('/cart', function () {
     return view('frontend.cart', ['title' => 'Cart']);
 });
 
+Route::get('/promo', function () {
+    return view('frontend.promo', ['title' => 'Promo']);
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -36,6 +40,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+    Route::get('/promo', function () {
+        return view('admin.promo.index', ['title' => 'Promo']);
+    })->name('promo.index');
 });
 
 // Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');

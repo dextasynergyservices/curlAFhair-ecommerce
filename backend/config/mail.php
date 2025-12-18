@@ -113,4 +113,15 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Notification Address
+    |--------------------------------------------------------------------------
+    |
+    | This address is used for internal notifications such as promo signups.
+    | It can be overridden via MAIL_ADMIN_ADDRESS in the environment.
+    |
+    */
+    'admin_address' => env('MAIL_ADMIN_ADDRESS', 'promo@curlafhair.com'),
+
 ];

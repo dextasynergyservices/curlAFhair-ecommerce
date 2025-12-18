@@ -1,0 +1,148 @@
+<div class=" rounded-xl p-6 border-2 border-purple-200/50 shadow-lg">
+    @if($errors->has('form'))
+        <div class="mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-5a1 1 0 112 0v2a1 1 0 11-2 0v-2zm1-8a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                <p class="text-red-800 font-medium">{{ $errors->first('form') }}</p>
+            </div>
+        </div>
+    @endif
+
+    <form wire:submit.prevent="submit" class="space-y-5">
+        <!-- Honeypot Field (hidden from users) -->
+        <div class="hidden">
+            <label for="promo_trap" class="sr-only">Do not fill this field</label>
+            <input
+                type="text"
+                id="promo_trap"
+                wire:model="honeypot"
+                autocomplete="off"
+                tabindex="-1"
+                aria-hidden="true"
+            >
+        </div>
+
+        <!-- Name Field -->
+        <div>
+            <label for="name" class="block text-sm font-medium text-white mb-2">Full Name</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </div>
+                <input 
+                    type="text" 
+                    id="name" 
+                    wire:model="name" 
+                    class="w-full pl-10 pr-4 py-3 bg-white/80 border-2 border-gray-300/80 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-400 transition placeholder-gray-500"
+                    placeholder="Enter your full name"
+                    required
+                >
+            </div>
+            @error('name') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Email Field -->
+        <div>
+            <label for="email" class="block text-sm font-medium text-white mb-2">Email Address</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <input 
+                    type="email" 
+                    id="email" 
+                    wire:model="email" 
+                    class="w-full pl-10 pr-4 py-3 bg-white/80 border-2 border-gray-300/80 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-400 transition placeholder-gray-500"
+                    placeholder="you@example.com"
+                    required
+                >
+            </div>
+            @error('email') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Phone Field -->
+        <div>
+            <label for="phone" class="block text-sm font-medium text-white mb-2">Phone Number</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                </div>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    wire:model="phone" 
+                    class="w-full pl-10 pr-4 py-3 bg-white/80 border-2 border-gray-300/80 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-400 transition placeholder-gray-500"
+                    placeholder="+234 567 8901"
+                    required
+                >
+            </div>
+            @error('phone') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Newsletter Checkbox -->
+        <div class="flex items-start p-3 border-2 border-gray-200/50 rounded-lg bg-white/50">
+            <input 
+                type="checkbox" 
+                id="newsletter" 
+                wire:model="wants_newsletter"
+                class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded mt-1"
+            >
+            <label for="newsletter" class="ml-3 block text-sm text-gray-700">
+                I want to receive updates about future promos and products
+            </label>
+        </div>
+
+        <!-- Submit Button - This is already pink! -->
+        <button 
+            type="submit" 
+            class="w-full bg-pink-500 text-white font-semibold py-3 px-4 rounded-lg border-2 border-pink-600 hover:bg-pink-600 hover:border-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+            wire:loading.attr="disabled"
+            wire:target="submit"
+        >
+            <span class="flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                </svg>
+                <span wire:loading.remove wire:target="submit">Get My Promo Code</span>
+                <span wire:loading wire:target="submit" class="flex items-center">
+                    <svg class="animate-spin h-4 w-4 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
+                    </svg>
+                    Sending...
+                </span>
+            </span>
+        </button>
+
+        @if($successMessage)
+            <div class="p-4 bg-green-50 border-2 border-green-300 rounded-lg">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <p class="text-green-800 font-medium">{{ $successMessage }}</p>
+                </div>
+            </div>
+        @endif
+    </form>
+
+    <!-- Additional Info -->
+    <div class="mt-6 pt-6 border-t-2 border-gray-200/50">
+        <div class="flex items-center justify-center">
+            <svg class="w-5 h-5 text-gray-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+            </svg>
+            <p class="text-xs text-white text-center">
+                Your information is secure. We'll only use it for this promo.
+            </p>
+        </div>
+    </div>
+</div>

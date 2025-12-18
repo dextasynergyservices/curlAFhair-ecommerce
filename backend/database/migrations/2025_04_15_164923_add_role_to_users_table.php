@@ -9,12 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+   public function up(): void
+{
+    if (!Schema::hasColumn('users', 'role')) {
         Schema::table('users', function (Blueprint $table) {
             $table->string('role')->default('member')->after('profile_photo_path');
         });
     }
+}
 
     /**
      * Reverse the migrations.

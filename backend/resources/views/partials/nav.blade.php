@@ -10,6 +10,7 @@
         <ul id="nav-links" class="hidden md:flex space-x-6 text-lg text-white transition-colors mx-auto">
             <li><a href="{{ url('/') }}" class="hover:text-pink-400">Home</a></li>
             <li><a href="{{ url('/shop') }}" class="hover:text-pink-400">Shop</a></li>
+            <li><a href="{{ url('/promo') }}" class="hover:text-pink-400">Promo</a></li>
             <li><a href="{{ url('/about') }}" class="hover:text-pink-400">About</a></li>
             <li><a href="{{ url('/services') }}" class="hover:text-pink-400">Services</a></li>
             <li><a href="{{ url('/contact') }}" class="hover:text-pink-400">Contact</a></li>
@@ -37,6 +38,7 @@
         <ul class="space-y-3 font-medium">
             <li><a href="{{ url('/') }}">Home</a></li>
             <li><a href="{{ url('/shop') }}">Shop</a></li>
+            <li><a href="{{ url('/promo') }}">Promo</a></li>
             <li><a href="{{ url('/about') }}">About</a></li>
             <li><a href="{{ url('/services') }}">Services</a></li>
             <li><a href="{{ url('/contact') }}">Contact</a></li>
