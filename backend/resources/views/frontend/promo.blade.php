@@ -63,7 +63,15 @@
                     </div>
                     
                     <div class="mt-6 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm text-white">By submitting, you agree to our terms and conditions</p>
+                        <p class="text-sm text-white">
+                            By submitting, you agree to our 
+                            <button 
+                                type="button"
+                                class="text-pink-300 hover:text-pink-200 hover:underline cursor-pointer" 
+                                data-open-terms-modal>
+                                    terms and conditions
+                            </button>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -73,7 +81,7 @@
     @php
         $winningCodes = \App\Models\WinningCode::orderBy('code')->get();
     @endphp
-    <div id="winning-codes-trigger" class="relative z-10 max-w-5xl w-full mx-auto px-4 pb-12">
+    <div id="winning-codes-trigger" class="relative z-10 max-w-5xl w-full mx-auto px-4 pb-12 hidden">
         <div class="flex items-center justify-center">
             <button 
                 type="button" 
@@ -115,23 +123,91 @@
     </div>
 </div>
 
+<!-- Terms and Condition Modal -->
+<div id="terms-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden flex flex-col">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">Terms and Conditions</h3>
+                <p class="text-sm text-gray-600">Please read carefully before participating</p>
+            </div>
+            <button type="button" class="text-gray-500 hover:text-gray-700 text-2xl" data-close-terms-modal>&times;</button>
+        </div>
+        <div class="p-6 overflow-y-auto">
+            <div class="prose prose-sm max-w-none">
+                <h4 class="text-lg font-semibold text-gray-900 mb-3">Welcome to Our Promotion</h4>
+                <p class="text-gray-700 mb-4">By submitting your information, you agree to the following terms and conditions:</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">1. Eligibility</h5>
+                <p class="text-gray-700 mb-3">You must be at least 18 years old to participate. By submitting your information, you confirm that you meet this requirement.</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">2. Promotional Codes</h5>
+                <p class="text-gray-700 mb-3">Promo codes are provided at our discretion and may be subject to expiration dates, usage limits, or other restrictions. Only valid promo codes will grant access to the exclusive sale.</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">3. Privacy</h5>
+                <p class="text-gray-700 mb-3">Your information will be used solely for the purpose of providing you with promotional offers. We will not share your personal data with third parties without your explicit consent.</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">4. Winning Codes</h5>
+                <p class="text-gray-700 mb-3">Winning codes will be announced on our social media platforms and displayed on this page. If your code appears in the winning codes list, you're eligible for the exclusive offer.</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">5. Service Availability</h5>
+                <p class="text-gray-700 mb-3">We reserve the right to modify, suspend, or discontinue the promotion at any time without prior notice.</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">6. Limitation of Liability</h5>
+                <p class="text-gray-700 mb-3">We are not liable for any technical issues, network problems, or other circumstances beyond our control that may affect your participation.</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">7. Changes to Terms</h5>
+                <p class="text-gray-700 mb-3">We may update these terms from time to time. Continued participation after changes constitutes acceptance of the new terms.</p>
+                
+                <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">8. Contact Information</h5>
+                <p class="text-gray-700">If you have any questions about these terms, please contact us via our social media channels.</p>
+            </div>
+        </div>
+        <div class="px-6 py-4 border-t border-gray-200 flex justify-end">
+            <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200" data-close-terms-modal>Close</button>
+        </div>
+    </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('winning-codes-modal');
-        const openButtons = document.querySelectorAll('[data-open-winning-codes]');
-        const closeButtons = document.querySelectorAll('[data-close-winning-codes]');
+        // Winning Codes Modal
+        const winningModal = document.getElementById('winning-codes-modal');
+        const openWinningButtons = document.querySelectorAll('[data-open-winning-codes]');
+        const closeWinningButtons = document.querySelectorAll('[data-close-winning-codes]');
 
-        const openModal = () => modal.classList.remove('hidden');
-        const closeModal = () => modal.classList.add('hidden');
+        const openWinningModal = () => winningModal.classList.remove('hidden');
+        const closeWinningModal = () => winningModal.classList.add('hidden');
 
-        openButtons.forEach(btn => btn.addEventListener('click', openModal));
-        closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
+        openWinningButtons.forEach(btn => btn.addEventListener('click', openWinningModal));
+        closeWinningButtons.forEach(btn => btn.addEventListener('click', closeWinningModal));
+        winningModal.addEventListener('click', (e) => {
+            if (e.target === winningModal) closeWinningModal();
         });
 
+        // Terms and Conditions Modal
+        const termsModal = document.getElementById('terms-modal');
+        const openTermsButtons = document.querySelectorAll('[data-open-terms-modal]');
+        const closeTermsButtons = document.querySelectorAll('[data-close-terms-modal]');
+
+        const openTermsModal = () => termsModal.classList.remove('hidden');
+        const closeTermsModal = () => termsModal.classList.add('hidden');
+
+        openTermsButtons.forEach(btn => btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openTermsModal();
+        }));
+        closeTermsButtons.forEach(btn => btn.addEventListener('click', closeTermsModal));
+        termsModal.addEventListener('click', (e) => {
+            if (e.target === termsModal) closeTermsModal();
+        });
+
+        // Handle Escape key for both modals
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') {
+                if (!termsModal.classList.contains('hidden')) closeTermsModal();
+                if (!winningModal.classList.contains('hidden')) closeWinningModal();
+            }
         });
     });
 </script>

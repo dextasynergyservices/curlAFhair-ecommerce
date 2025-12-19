@@ -4,7 +4,7 @@
         <div class="hidden md:flex items-center space-x-6 text-white font-medium">
             <button
                 type="button"
-                class="px-4 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-white shadow transition focus:outline-none focus:ring-2 focus:ring-pink-300"
+                class="px-4 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-white shadow transition focus:outline-none focus:ring-2 focus:ring-pink-300 hidden"
                 data-open-winning-codes
             >
                 Winning Codes

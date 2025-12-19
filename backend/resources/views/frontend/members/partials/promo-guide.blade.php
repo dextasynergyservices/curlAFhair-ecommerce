@@ -1,18 +1,18 @@
 <div class="space-y-4 backdrop-blur-lg p-4 rounded-lg">
     <!-- Step 1 -->
-    <div class="flex items-start group hover:bg-purple-50/50 p-3 rounded-lg transition duration-200">
+    <div class="flex items-start group p-3 rounded-lg transition duration-200">
         <div class="flex-shrink-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full w-7 h-7 flex items-center justify-center mr-3 mt-1">
             <span class="font-bold text-sm">1</span>
         </div>
         <div>
-            <h4 class="font-semibold text-white text-base mb-1">Prepare</h4>
-            <p class="text-white text-sm mb-1">Follow us on at least one platform:</p>
+            <h4 class="font-semibold text-white text-base mb-1">Get Ready</h4>
+            <p class="text-white text-sm mb-1">Follow us on:</p>
             <ol class="space-y-1 text-white text-sm ml-1 list-decimal list-inside">
                 <li class="flex items-center">
                     <div class="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
                     <strong>X:</strong> 
                     <a href="https://x.com/curlafhair" target="_blank" rel="noopener noreferrer" 
-                       class="text-purple-300 hover:text-purple-200 hover:underline ml-1 transition duration-200">
+                       class="text-pink-300 hover:text-purple-200 hover:underline ml-1 transition duration-200">
                         @curlafhair
                     </a>
                 </li>
@@ -28,7 +28,7 @@
                     <div class="w-2 h-2 bg-purple-400 rounded-full mr-2"></div>
                     <strong>IG:</strong> 
                     <a href="https://instagram.com/curlafhairofficial" target="_blank" rel="noopener noreferrer" 
-                       class="text-purple-300 hover:text-purple-200 hover:underline ml-1 transition duration-200">
+                       class="text-pink-300 hover:text-purple-200 hover:underline ml-1 transition duration-200">
                         @curlafhairofficial
                     </a>
                 </li>
@@ -38,58 +38,32 @@
     </div>
     
     <!-- Step 2 -->
-    <div class="flex items-start group hover:bg-purple-50/50 p-3 rounded-lg transition duration-200">
+    <div class="flex items-start group p-3 rounded-lg transition duration-200">
         <div class="flex-shrink-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full w-7 h-7 flex items-center justify-center mr-3 mt-1">
             <span class="font-bold text-sm">2</span>
         </div>
         <div>
-            <h4 class="font-semibold text-white text-base mb-1">At 00:00 on 20th Dec</h4>
-            <p class="text-white text-sm">Click the link in our bio on X, TikTok, or IG. This takes you to the special website (active only from midnight).</p>
+            <h4 class="font-semibold text-white text-base mb-1">Join at Midnight (20th Dec)</h4>
+            <p class="text-white text-sm">At 12:00am, click the link in our bio on any platform to access the special website.</p>
         </div>
     </div>
     
     <!-- Step 3 -->
-    <div class="flex items-start group hover:bg-purple-50/50 p-3 rounded-lg transition duration-200">
+    <div class="flex items-start group p-3 rounded-lg transition duration-200">
         <div class="flex-shrink-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full w-7 h-7 flex items-center justify-center mr-3 mt-1">
             <span class="font-bold text-sm">3</span>
         </div>
         <div>
-            <h4 class="font-semibold text-white text-base mb-1">On the Website</h4>
-            <p class="text-white text-sm">Enter your email and phone number. Once submitted, your unique visitor number will be revealed (e.g., #1 for first visitor, #5 for fifth).</p>
+            <h4 class="font-semibold text-white text-base mb-1">Complete & Confirm</h4>
+            <p class="text-white text-sm">Enter your email and phone number to get a number on the website, then comment that number under the promo post.</p>
         </div>
     </div>
+
     
-    <!-- Step 4 -->
-    <div class="flex items-start group hover:bg-purple-50/50 p-3 rounded-lg transition duration-200">
-        <div class="flex-shrink-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full w-7 h-7 flex items-center justify-center mr-3 mt-1">
-            <span class="font-bold text-sm">4</span>
-        </div>
-        <div>
-            <h4 class="font-semibold text-white text-base mb-1">Verify Participation</h4>
-            <p class="text-white text-sm">Comment your visitor number under the official promo post (e.g., "Got #3!").</p>
-        </div>
-    </div>
-    
-    <!-- Step 5 -->
-    <div class="flex items-start group hover:bg-purple-50/50 p-3 rounded-lg transition duration-200">
-        <div class="flex-shrink-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full w-7 h-7 flex items-center justify-center mr-3 mt-1">
-            <span class="font-bold text-sm">5</span>
-        </div>
-        <div>
-            <h4 class="font-semibold text-white text-base mb-1">Winning Numbers</h4>
-            <p class="text-white text-sm">We'll reveal the winning numbers before the promo ends. Check our social media for the announcement!</p>
-        </div>
-    </div>
-    
-    <!-- Step 6 -->
-    <div class="flex items-start group hover:bg-purple-50/50 p-3 rounded-lg transition duration-200">
-        <div class="flex-shrink-0 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full w-7 h-7 flex items-center justify-center mr-3 mt-1">
-            <span class="font-bold text-sm">6</span>
-        </div>
-        <div>
-            <h4 class="font-semibold text-white text-base mb-1">Done!</h4>
-            <p class="text-white text-sm">Winners will be contacted via email or phone. Good luck!</p>
-        </div>
+</div>
+
+<div class="flex items-center group rounded-lg transition duration-200">
+            <p class="font-semibold text-white text-sm md:text-lg mb-1">That's it! Winners will be contacted. Good luck!</p>
     </div>
     
     <!-- Important Note -->
@@ -105,4 +79,3 @@
             </div>
         </div>
     </div>
-</div>

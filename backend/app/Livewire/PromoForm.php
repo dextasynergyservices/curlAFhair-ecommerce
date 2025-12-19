@@ -15,16 +15,35 @@ class PromoForm extends Component
     public $name = '';
     public $email = '';
     public $phone = '';
+    public $country_code = 'NG'; // Default to Nigeria
     public $wants_newsletter = false;
     public $successMessage = null;
     public $honeypot = '';
 
-    protected $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:promos,email',
-        'phone' => 'required|string|max:20|unique:promos,phone',
-        'honeypot' => 'nullable|prohibited',
-    ];
+    protected function rules()
+    {
+        $phoneValidation = [
+            'required',
+            'string',
+            function ($attribute, $value, $fail) {
+                $value = preg_replace('/\s+/', '', $value);
+                $length = $this->country_code === 'US' ? 10 : 10;
+
+                if (strlen($value) !== $length) {
+                    $fail("The phone number must be {$length} digits long.");
+                }
+            },
+            'unique:promos,phone',
+        ];
+
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:promos,email',
+            'phone' => $phoneValidation,
+            'country_code' => 'required|in:NG,US',
+            'honeypot' => 'nullable|prohibited',
+        ];
+    }
 
     protected $messages = [
         'email.unique' => 'A promo code has already been sent to this user.',
@@ -32,6 +51,13 @@ class PromoForm extends Component
         'honeypot.prohibited' => 'Unable to process your submission.',
     ];
 
+    public function updated($field)
+    {
+        if ($field === 'country_code') {
+            $this->reset('phone');
+        }
+    }
+    
     public function submit()
     {
         $this->resetValidation();
@@ -39,7 +65,10 @@ class PromoForm extends Component
         $this->successMessage = null;
         $this->name = trim($this->name ?? '');
         $this->email = trim($this->email ?? '');
-        $this->phone = trim($this->phone ?? '');
+        $this->phone = preg_replace('/\s+/', '', trim($this->phone ?? ''));
+
+        // Prepend country code before validation
+        $phoneWithCountryCode = ($this->country_code === 'US' ? '+1' : '+234') . $this->phone;
 
         $rateLimitKey = 'promo-form:' . request()->ip();
         if (RateLimiter::tooManyAttempts($rateLimitKey, 3)) {
@@ -50,19 +79,10 @@ class PromoForm extends Component
 
         $this->validate();
 
-        $alreadyHasPromo = Promo::where('email', $this->email)
-            ->orWhere('phone', $this->phone)
-            ->exists();
-
-        if ($alreadyHasPromo) {
-            $this->addError('form', 'A promo code has already been sent to this user.');
-            return;
-        }
-
         $promo = null;
 
         try {
-            DB::transaction(function () use (&$promo) {
+            DB::transaction(function () use (&$promo, $phoneWithCountryCode) {
                 $lastPromo = Promo::latest('id')->lockForUpdate()->first();
                 $nextId = $lastPromo ? $lastPromo->id + 1 : 1;
                 $promoCode = 'PROMO-' . str_pad($nextId, 5, '0', STR_PAD_LEFT);
@@ -70,7 +90,7 @@ class PromoForm extends Component
                 $promo = Promo::create([
                     'name' => $this->name,
                     'email' => $this->email,
-                    'phone' => $this->phone,
+                    'phone' => $phoneWithCountryCode,
                     'wants_newsletter' => $this->wants_newsletter,
                     'promo_code' => $promoCode,
                     'user_id' => auth()->id(),
@@ -88,7 +108,7 @@ class PromoForm extends Component
             Mail::to($adminEmail)->send(new AdminPromoNotification($promo));
         }
 
-        $this->reset(['name', 'email', 'phone', 'wants_newsletter', 'honeypot']);
+        $this->reset(['name', 'email', 'phone', 'wants_newsletter', 'honeypot', 'country_code']);
         $this->resetValidation();
         $this->successMessage = 'Thank you! Your promo code has been sent to your email.';
     }

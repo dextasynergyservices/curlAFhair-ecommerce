@@ -1,4 +1,4 @@
-<div class=" rounded-xl p-6 border-2 border-purple-200/50 shadow-lg">
+<div class="rounded-xl p-6 border-2 border-purple-200/50 shadow-lg">
     @if($errors->has('form'))
         <div class="mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
             <div class="flex items-center">
@@ -66,9 +66,64 @@
             @error('email') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
         </div>
 
-        <!-- Phone Field -->
-        <div>
-            <label for="phone" class="block text-sm font-medium text-white mb-2">Phone Number</label>
+        <!-- Phone Number with Country Selector -->
+       <div>
+    <label for="phone" class="block text-sm font-medium text-white mb-2">Phone Number</label>
+    <div class="flex flex-col sm:flex-row gap-4">
+        <!-- Country Code Dropdown -->
+        <div class="w-full sm:w-1/3">
+            <div wire:ignore class="relative">
+                <button 
+                    type="button" 
+                    onclick="toggleCountryDropdown()"
+                    class="w-full px-3 py-3 bg-white/80 border-2 border-gray-300/80 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-400 transition flex items-center justify-between"
+                    id="country-button"
+                >
+                    <div class="flex items-center">
+                        <span class="fi fi-{{ strtolower($country_code) }} mr-2"></span>
+                        <span class="text-sm font-medium">+{{ $country_code == 'US' ? '1' : '234' }}</span>
+                    </div>
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <!-- Dropdown Options -->
+                <div 
+                    id="country-dropdown" 
+                    class="absolute hidden mt-1 w-full bg-white border-2 border-gray-300/80 rounded-lg shadow-lg z-50 overflow-hidden"
+                >
+                    <button 
+                        type="button"
+                        wire:click="$set('country_code', 'NG')"
+                        onclick="selectCountry('ng', '+234')"
+                        class="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center text-sm border-b border-gray-100"
+                    >
+                        <span class="fi fi-ng mr-3"></span>
+                        <div class="flex flex-col">
+                            <span class="font-medium">NG</span>
+                            <span class="text-xs text-gray-500">+234</span>
+                        </div>
+                    </button>
+                    <button 
+                        type="button"
+                        wire:click="$set('country_code', 'US')"
+                        onclick="selectCountry('us', '+1')"
+                        class="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center text-sm"
+                    >
+                        <span class="fi fi-us mr-3"></span>
+                        <div class="flex flex-col">
+                            <span class="font-medium">US</span>
+                            <span class="text-xs text-gray-500">+1</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            @error('country_code') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Phone Number Input -->
+        <div class="w-full sm:w-2/3">
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,12 +135,14 @@
                     id="phone" 
                     wire:model="phone" 
                     class="w-full pl-10 pr-4 py-3 bg-white/80 border-2 border-gray-300/80 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-400 transition placeholder-gray-500"
-                    placeholder="+234 567 8901"
+                    placeholder="{{ $country_code == 'US' ? '555 123 4567' : '801 234 5678' }}"
                     required
                 >
             </div>
-            @error('phone') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
         </div>
+    </div>
+    @error('phone') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+</div>>
 
         <!-- Newsletter Checkbox -->
         <div class="flex items-start p-3 border-2 border-gray-200/50 rounded-lg bg-white/50">
@@ -100,20 +157,20 @@
             </label>
         </div>
 
-        <!-- Submit Button - This is already pink! -->
         <button 
             type="submit" 
-            class="w-full bg-pink-500 text-white font-semibold py-3 px-4 rounded-lg border-2 border-pink-600 hover:bg-pink-600 hover:border-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+            class="w-full bg-pink-500 text-white font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg border-2 border-pink-600 hover:bg-pink-600 hover:border-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed text-sm md:text-base"
             wire:loading.attr="disabled"
             wire:target="submit"
         >
-            <span class="flex items-center justify-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                </svg>
+            <span class="flex items-center justify-center gap-1">
+                <svg class="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+                </svg> 
                 <span wire:loading.remove wire:target="submit">Get My Promo Code</span>
                 <span wire:loading wire:target="submit" class="flex items-center">
-                    <svg class="animate-spin h-4 w-4 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg class="animate-spin h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
                     </svg>
@@ -141,8 +198,47 @@
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
             </svg>
             <p class="text-xs text-white text-center">
-                Your information is secure. We'll only use it for this promo.
+                Your information will be used solely for this promotion and will be handled in accordance with our Privacy Policy. We do not sell or share your data with third parties
             </p>
         </div>
     </div>
 </div>
+
+<script>
+    function toggleCountryDropdown() {
+        const dropdown = document.getElementById('country-dropdown');
+        dropdown.classList.toggle('hidden');
+    }
+
+    function selectCountry(code, dialCode) {
+        // Update button display
+        const button = document.getElementById('country-button');
+        button.innerHTML = `
+            <div class="flex items-center">
+                <span class="fi fi-${code} mr-2"></span>
+                <span class="text-sm font-medium">${dialCode}</span>
+            </div>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+        `;
+        
+        // Update phone placeholder
+        const phoneInput = document.getElementById('phone');
+        phoneInput.placeholder = dialCode === '+1' ? '555 123 4567' : '801 234 5678';
+        
+        // Close dropdown
+        document.getElementById('country-dropdown').classList.add('hidden');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('country-dropdown');
+        const button = document.getElementById('country-button');
+        
+        if (button && !button.contains(event.target) && 
+            dropdown && !dropdown.contains(event.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+</script>
