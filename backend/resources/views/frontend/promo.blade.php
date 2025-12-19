@@ -12,6 +12,39 @@
     <!-- Main content cards - centered horizontally -->
     <div class="relative z-10 flex flex-col lg:flex-row md:pt-48 lg:pt-48 gap-8 items-center justify-center px-4 py-24 max-w-7xl w-full h-full mx-auto">
         <div class="w-full flex flex-col lg:flex-row gap-8 items-center justify-center py-12 lg:py-0">
+
+            <!-- Form Card -->
+            <div class="w-full lg:w-1/2 max-w-lg">
+                <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
+
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="text-center lg:text-left">
+                            <h2 class="text-2xl font-bold text-white">Get Your Promo Code</h2>
+                            <p class="text-white">Enter your details to and get a number for a chance to win! </p>
+                        </div>
+                    </div>
+
+                    <div class="max-h-[400px] overflow-y-auto pr-2 mb-4">
+                        <!-- Add white glass background wrapper -->
+                        <div class="backdrop-blur-sm rounded-xl p-4">
+                            @livewire('promo-form')
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                        <p class="text-sm text-white">
+                            By submitting, you agree to our 
+                            <button 
+                                type="button"
+                                class="text-pink-300 hover:text-pink-200 hover:underline cursor-pointer" 
+                                data-open-terms-modal>
+                                    terms and conditions
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Guide Card -->
             <div class="w-full lg:w-1/2 max-w-lg">
                 <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
@@ -40,38 +73,6 @@
                                 <span class="text-sm sm:text-base">IG: @curlafhairofficial</span>
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form Card -->
-            <div class="w-full lg:w-1/2 max-w-lg">
-                <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
-
-                    <div class="flex items-center justify-center mb-6">
-                        <div class="text-center lg:text-left">
-                            <h2 class="text-2xl font-bold text-white">Get Your Promo Code</h2>
-                            <p class="text-white">Enter your details to participate in the exclusive sale</p>
-                        </div>
-                    </div>
-
-                    <div class="max-h-[400px] overflow-y-auto pr-2 mb-4">
-                        <!-- Add white glass background wrapper -->
-                        <div class="backdrop-blur-sm rounded-xl p-4">
-                            @livewire('promo-form')
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 pt-6 border-t border-gray-200 text-center">
-                        <p class="text-sm text-white">
-                            By submitting, you agree to our 
-                            <button 
-                                type="button"
-                                class="text-pink-300 hover:text-pink-200 hover:underline cursor-pointer" 
-                                data-open-terms-modal>
-                                    terms and conditions
-                            </button>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -142,7 +143,7 @@
                 <p class="text-gray-700 mb-3">You must be at least 18 years old to participate. By submitting your information, you confirm that you meet this requirement.</p>
                 
                 <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">2. Promotional Codes</h5>
-                <p class="text-gray-700 mb-3">Promo codes are provided at our discretion and may be subject to expiration dates, usage limits, or other restrictions. Only valid promo codes will grant access to the exclusive sale.</p>
+                <p class="text-gray-700 mb-3">Promo codes are provided at our discretion and may be subject to expiration dates, usage limits, or other restrictions. Only valid promo codes can participate.</p>
                 
                 <h5 class="text-md font-semibold text-gray-800 mt-4 mb-2">3. Privacy</h5>
                 <p class="text-gray-700 mb-3">Your information will be used solely for the purpose of providing you with promotional offers. We will not share your personal data with third parties without your explicit consent.</p>
