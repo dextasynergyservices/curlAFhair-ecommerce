@@ -20,7 +20,7 @@
                     <div class="flex items-center justify-center mb-6">
                         <div class="text-center lg:text-left">
                             <h2 class="text-2xl font-bold text-white">Get Your Promo Code</h2>
-                            <p class="text-white">Enter your details to and get a number for a chance to win! </p>
+                            <p class="text-white">Enter your details and get a number for a chance to win! </p>
                         </div>
                     </div>
 
