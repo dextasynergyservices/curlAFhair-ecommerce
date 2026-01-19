@@ -101,11 +101,21 @@ class PromoForm extends Component
             return;
         }
 
+        // Send emails - wrapped in try-catch to prevent email failures from breaking the flow
         if ($promo) {
-            Mail::to($this->email)->send(new PromoCodeMail($promo->promo_code));
+            try {
+                Mail::to($this->email)->send(new PromoCodeMail($promo->promo_code));
 
-            $adminEmail = config('mail.admin_address', 'admin@curlafhair.com');
-            Mail::to($adminEmail)->send(new AdminPromoNotification($promo));
+                $adminEmail = config('mail.admin_address', 'admin@curlafhair.com');
+                Mail::to($adminEmail)->send(new AdminPromoNotification($promo));
+            } catch (\Throwable $e) {
+                // Log the error but don't fail the submission
+                \Log::error('Failed to send promo emails: ' . $e->getMessage(), [
+                    'promo_id' => $promo->id,
+                    'email' => $this->email,
+                ]);
+                // Continue to show success message - user's promo code is saved
+            }
         }
 
         $this->reset(['name', 'email', 'phone', 'wants_newsletter', 'honeypot', 'country_code']);

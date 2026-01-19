@@ -142,7 +142,7 @@
         </div>
     </div>
     @error('phone') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
-</div>>
+</div>
 
         <!-- Newsletter Checkbox -->
         <div class="flex items-start p-3 border-2 border-gray-200/50 rounded-lg bg-white/50">
@@ -232,13 +232,16 @@
     }
 
     // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('DOMContentLoaded', function() {
         const dropdown = document.getElementById('country-dropdown');
         const button = document.getElementById('country-button');
         
-        if (button && !button.contains(event.target) && 
-            dropdown && !dropdown.contains(event.target)) {
-            dropdown.classList.add('hidden');
+        if (dropdown && button) {
+            document.addEventListener('click', function(event) {
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
         }
     });
 </script>

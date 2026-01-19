@@ -212,8 +212,8 @@ class PromoList extends Component
 
         // Close matches modal and open compose email modal
         $this->showMatchesModal = false;
-        $this->emailSubject = 'Congratulations! You\'re a Winner!';
-        $this->emailBody = '';
+        $this->emailSubject = 'Entries are closed, but we have good news…';
+        $this->emailBody = "Dear {name},\n\nCurl AFhair is happy to inform you that you are a winner of the curl AFhair Holiday Promo Gift Box.\n\nWe will send another email with further details on how to redeem your Gift Box. Be on the look out on our social media pages for more details.\n\nLove your curls always,";
         $this->showComposeEmailModal = true;
     }
 
@@ -231,6 +231,9 @@ class PromoList extends Component
         }
 
         $sentCount = 0;
+        $failedCount = 0;
+        $errors = [];
+        
         foreach ($this->matchedPromos as $promo) {
             try {
                 // Replace placeholders with actual data
@@ -250,12 +253,21 @@ class PromoList extends Component
                 Mail::to($promo->email)->send(new CustomizedWinnerNotification($promo, $customizedSubject, $customizedBody));
                 $sentCount++;
             } catch (\Exception $e) {
+                $failedCount++;
                 // Log error but continue with other emails
                 \Log::error('Failed to send email to ' . $promo->email . ': ' . $e->getMessage());
+                $errors[] = $promo->email . ': ' . $e->getMessage();
             }
         }
 
-        $this->toast("Email notifications have been sent to {$sentCount} winner(s)!", 'success');
+        if ($sentCount > 0 && $failedCount === 0) {
+            $this->toast("Email notifications have been sent to {$sentCount} winner(s)!", 'success');
+        } elseif ($sentCount > 0 && $failedCount > 0) {
+            $this->toast("Sent to {$sentCount} winner(s), but {$failedCount} failed. Check logs for details.", 'error');
+        } else {
+            $this->toast("Failed to send emails. Error: " . ($errors[0] ?? 'Unknown error. Check your email configuration.'), 'error');
+        }
+        
         $this->showComposeEmailModal = false;
         $this->emailSubject = '';
         $this->emailBody = '';

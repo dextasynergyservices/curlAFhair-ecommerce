@@ -179,7 +179,7 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1">Email Message <span class="text-red-500">*</span></label>
                         <textarea wire:model.defer="emailBody" rows="8" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="Write your customized message here..."></textarea>
                         @error('emailBody') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
-                        <p class="mt-2 text-xs text-gray-500">You can use placeholders like {{ '{name}' }}, {{ '{email}' }}, {{ '{promo_code}' }} which will be replaced with each winner's information.</p>
+                        <p class="mt-2 text-xs text-gray-500">You can use placeholders like @{{ '{name}' }}, @{{ '{email}' }}, @{{ '{promo_code}' }} which will be replaced with each winner's information.</p>
                     </div>
                 </div>
                 <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
