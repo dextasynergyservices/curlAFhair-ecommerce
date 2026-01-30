@@ -4,87 +4,100 @@
 <div class="relative h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/hero.png') }}');">
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start text-left md:px-10 px-10">
         <h1 class="text-white text-5xl md:text-6xl font-bold mb-4 animate-slideInRight">Dry curls?</h1>
-        <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft">We say no to having hair that’s not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad Hair day:
+        <p class="text-gray-200 text-lg max-w-xl animate-slideInLeft">We say no to having hair that's not moisturized. Our products are uniquely formulated to tackle the 3 ingredients of a bad Hair day:
 
         Dry Hair - leads to breakage, split ends, unmanageable hair and rough hair
         Frizz - leads to hair that can be out of control
         Tangles - leads to fairy knots and breakage .</p>
-        <a href="{{ url('/shop') }}" class="mt-6 inline-block bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700" id="shopButton">Shop Now</a>
+        <a href="{{ route('shop.index') }}" class="mt-6 inline-block bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700" id="shopButton">Shop Now</a>
     </div>
 </div>
 
 
 <!-- shop items section -->
 <section class="py-12 px-4 md:px-20 bg-white">
-  <div class="container mx-auto">
+  <div class="container mx-auto max-w-7xl">
     <!-- Header -->
     <h1 class="text-2xl font-semibold mb-8 md:mt-12">
       <span class="font-bold text-black">Shop</span> <span class="text-gray-600">| buy our moisturising solution</span>
     </h1>
 
     <!-- Product Grid -->
+    @if(isset($latestProducts) && $latestProducts->count() > 0)
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Product Card 1-->
-      <div class="bg-white overflow-hidden md:w-[400px]">
-        <img src="/images/card1.png" alt="Deep Conditioner" class="w-full h-[400px] object-cover rounded-lg ">
+      @foreach($latestProducts as $product)
+      <div class="bg-white overflow-hidden group">
+        <a href="{{ route('product.show', $product->slug) }}" class="block relative">
+          <div class="relative overflow-hidden aspect-square">
+            @if($product->image)
+              <img src="{{ asset('storage/' . $product->image) }}" 
+                   alt="{{ $product->name }}" 
+                   class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+            @else
+              <div class="w-full h-full bg-gray-200 flex items-center justify-center rounded-lg">
+                <span class="text-gray-400">No Image</span>
+              </div>
+            @endif
+            
+            <!-- Badges -->
+            <div class="absolute top-3 left-3 flex flex-col gap-2">
+              @if($product->is_discounted && $product->discount_price)
+                <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                  -{{ $product->discount_percentage }}%
+                </span>
+              @endif
+              @if($product->is_promo_product)
+                <span class="bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded">
+                  PROMO
+                </span>
+              @endif
+            </div>
+          </div>
+        </a>
         <div class="p-4">
-          <h3 class="text-lg font-semibold">Deep Conditioner</h3>
-          <p class="text-gray-600 text-sm">NGN12,000 / 300ml</p>
-          <p class="text-gray-600 text-sm ">NGN20,000 / 500ml</p>
+          <a href="{{ route('product.show', $product->slug) }}">
+            <h3 class="text-lg font-semibold hover:text-pink-600 transition-colors">{{ $product->name }}</h3>
+          </a>
+          <div class="mt-2">
+            @if($product->is_discounted && $product->discount_price)
+              <span class="text-pink-600 font-bold">₦{{ number_format($product->discount_price, 2) }}</span>
+              <span class="text-gray-400 line-through ml-2">₦{{ number_format($product->price, 2) }}</span>
+            @else
+              <span class="font-bold">₦{{ number_format($product->price, 2) }}</span>
+            @endif
+            @if($product->quantity)
+              <span class="text-gray-500 text-sm">/ {{ $product->quantity }}</span>
+            @endif
+          </div>
+          @if($product->variants->count() > 0)
+            <p class="text-gray-600 text-sm mt-1">
+              @foreach($product->variants->take(2) as $variant)
+                ₦{{ number_format($variant->is_discounted && $variant->discount_price ? $variant->discount_price : $variant->price, 2) }} / {{ $variant->quantity }}@if(!$loop->last), @endif
+              @endforeach
+            </p>
+          @endif
         </div>
       </div>
-
-      <!-- Product Card 2-->
-      <div class="bg-white rounded-lg overflow-hidden md:w-[400px">
-        <img src="/images/card2.png" alt="Curl Definer" class="w-full h-[400px] object-cover rounded-lg ">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Curl Definer</h3>
-          <p class="text-gray-600 text-sm">NGN11,000 / 300ml</p>
-          <p class="text-gray-600 text-sm ">NGN18,000 / 500ml</p>
-        </div>
+      @endforeach
+    </div>
+    @else
+    <!-- Empty State -->
+    <div class="text-center py-16">
+      <div class="text-gray-400 mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
       </div>
-
-      <!-- Product Card 3-->
-      <div class="bg-white rounded-lg overflow-hidden md:w-[400px]">
-        <img src="/images/card3.png" alt="Hair Butter" class="w-full h-[400px] object-cover rounded-lg ">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Hair Butter</h3>
-          <p class="text-gray-600 text-sm">NGN11,500 / 300ml</p>
-          <p class="text-gray-600 text-sm ">NGN19,000 / 500ml</p>
-        </div>
-      </div>
-
-      <!-- Product Card 4-->
-      <div class="bg-white overflow-hidden md:w-[400px]">
-        <img src="/images/card1.png" alt="Deep Conditioner" class="w-full h-[400px] object-cover rounded-lg ">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Deep Conditioner</h3>
-          <p class="text-gray-600 text-sm">NGN12,000 / 300ml</p>
-          <p class="text-gray-600 text-sm ">NGN20,000 / 500ml</p>
-        </div>
-      </div>
-
-      <!-- Product Card 5-->
-      <div class="bg-white rounded-lg overflow-hidden md:w-[400px">
-        <img src="/images/card2.png" alt="Curl Definer" class="w-full h-[400px] object-cover rounded-lg ">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Curl Definer</h3>
-          <p class="text-gray-600 text-sm">NGN11,000 / 300ml</p>
-          <p class="text-gray-600 text-sm ">NGN18,000 / 500ml</p>
-        </div>
-      </div>
-
-      <!-- Product Card 6-->
-      <div class="bg-white rounded-lg overflow-hidden md:w-[400px]">
-        <img src="/images/card3.png" alt="Hair Butter" class="w-full h-[400px] object-cover rounded-lg ">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">Hair Butter</h3>
-          <p class="text-gray-600 text-sm">NGN11,500 / 300ml</p>
-          <p class="text-gray-600 text-sm ">NGN19,000 / 500ml</p>
-        </div>
-      </div>
-
-
+      <h3 class="text-xl font-semibold text-gray-600 mb-2">Products Coming Soon</h3>
+      <p class="text-gray-500">We're adding amazing products to our collection. Check back soon!</p>
+    </div>
+    @endif
+    
+    <!-- View All Products Button -->
+    <div class="text-center mt-10">
+      <a href="{{ route('shop.index') }}" class="inline-block bg-black text-white px-8 py-3 rounded-full hover:bg-pink-600 transition-colors">
+        View All Products
+      </a>
     </div>
   </div>
 </section> <!-- End Of Shop item section -->
@@ -105,7 +118,7 @@
 
       <p class="mb-6">This product is for the women who want curly and fabulous hair. Who want to enjoy their God-given hair without wondering if our hair is just "bad". No, your hair is not bad. You've just not found the right moisturiser yet!</p>
     </div>
-    <p class="text-center font-bold text-lg">what’s PLANET AF?</p>
+    <p class="text-center font-bold text-lg">what's PLANET AF?</p>
   </div>
 </section> <!-- End of About Section -->
 
@@ -136,7 +149,7 @@
 
 <!-- Card 1 -->
 <div class="bg-white overflow-hidden w-[400px] h-[200px] rounded border py-5 px-10">
-  <h3 class="text-lg my-8">“A terrific piece of praise”</h3>
+  <h3 class="text-lg my-8">"A terrific piece of praise"</h3>
   <div class="flex flex-row items-center gap-x-4">
     <img src="/images/review1.png" alt="review" class="w-[45px] h-[45px] rounded-full">
     <div>
@@ -148,7 +161,7 @@
 
 <!-- Card 2 -->
 <div class="bg-white overflow-hidden w-[400px] h-[200px] rounded border py-5 px-10">
-  <h3 class="text-lg my-8">“A terrific piece of praise”</h3>
+  <h3 class="text-lg my-8">"A terrific piece of praise"</h3>
   <div class="flex flex-row items-center gap-x-4">
     <img src="/images/review2.png" alt="review" class="w-[45px] h-[45px] rounded-full">
     <div>
@@ -160,7 +173,7 @@
 
 <!-- Card 3 -->
 <div class="bg-white overflow-hidden w-[400px] h-[200px] rounded border py-5 px-10">
-  <h3 class="text-lg my-8">“A terrific piece of praise”</h3>
+  <h3 class="text-lg my-8">"A terrific piece of praise"</h3>
   <div class="flex flex-row items-center gap-x-4">
     <img src="/images/review3.jpg" alt="review" class="w-[45px] h-[45px] rounded-full">
     <div>

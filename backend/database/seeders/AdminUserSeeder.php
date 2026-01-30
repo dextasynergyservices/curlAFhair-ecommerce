@@ -14,17 +14,33 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $email = env('ADMIN_EMAIL', 'admin@curlafhair.com');
-        $password = env('ADMIN_PASSWORD', 'Admin@12345');
+        // Create Admin User
+        $adminEmail = env('ADMIN_EMAIL', 'admin@curlafhair.com');
+        $adminPassword = env('ADMIN_PASSWORD', 'Admin@12345');
 
         User::updateOrCreate(
-            ['email' => $email],
+            ['email' => $adminEmail],
             [
                 'name' => 'CurlAFHair Admin',
-                'password' => Hash::make($password),
+                'password' => Hash::make($adminPassword),
                 'role' => 'admin',
                 'email_verified_at' => now(),
             ]
         );
+
+        $this->command->info('Admin user created: ' . $adminEmail);
+
+        // Create Regular User
+        User::updateOrCreate(
+            ['email' => 'user@curlafhair.com'],
+            [
+                'name' => 'Test User',
+                'password' => Hash::make('User@12345'),
+                'role' => 'user',
+                'email_verified_at' => now(),
+            ]
+        );
+
+        $this->command->info('Regular user created: user@curlafhair.com');
     }
 }
